@@ -11,22 +11,46 @@ package Hoja11;
  */
 
 import java.util.*;
-import java.math.*;
+import java.io.*;
 public class Main {
 
+        //Matriz en donde se va a guardar
 	static int[][] P;
-	static final int N = 2;
+        //Numero de filas y columnas
+	static final int N = 4;
 
-	public static void main(String[] args) {
-		int[][] M = { { 1000, 5}, { 50, 32} };
-		P = new int[N][N];
-		System.out.println("Matrix to find the shortest path of.");
-		printMatrix(M);
-		System.out.println("Shortest Path Matrix.");
-		printMatrix(Floyd(M));
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+            int[][] M = { { 1000, 5}, { 50, 32} };
+            int[][] matriz = new int[N][N];
+                
+            File grafo = new File("src/Hoja11/guategrafo.txt");
+            FileReader read = new FileReader(grafo);
+            BufferedReader buff = new BufferedReader(read);
+            
+            String line;        
+        
+            while((line = buff.readLine()) != null){
+                String linea = line.replaceAll("\\n", ", ");
+                String[] separate = linea.split(", ");
+                int j = 0;
+                for(int i = 0; i < N; i ++){                    
+                    for(int k = 0; k < N; k++){                        
+                        matriz[i][k] = Integer.parseInt(separate[j]);
+                        j++;
+                    }                    
+                }
+            }
+            
+                
+            P = new int[N][N];
+            System.out.println("Matriz de adyacencia");
+            printMatrix(matriz);
+            System.out.println("Matriz reducida");
+            printMatrix(Floyd(matriz));
 		
 	}
 
+        //Algoritmo de FLoyd
 	public static int[][] Floyd(int[][] M) {
 		for (int k = 0; k < N; k++) {
 			for (int i = 0; i < N; i++) {
@@ -35,18 +59,19 @@ public class Main {
 				}
 			}
 		}
-                System.out.println(Arrays.toString(M));
 		return M;
 	}
-
+        
+        
+        //Imprimiendo la matriz que se dio
 	public static void printMatrix(int[][] Matrix) {
 		System.out.print("\n\t");
 		for (int j = 0; j < N; j++) {
-			System.out.print("Ciudad: " + j + "\t");
+			System.out.print("    Ciudad: " + j + "\t");
 		}
 		System.out.println();
 		for (int j = 0; j < 35; j++) {
-			System.out.print("-");
+			System.out.print("--");
 		}
 		System.out.println();
 		for (int i = 0; i < N; i++) {
@@ -54,6 +79,7 @@ public class Main {
 			for (int j = 0; j < N; j++) {
 				System.out.print(Matrix[i][j]);
 				System.out.print("\t");
+                                System.out.print("\t");
 			}
 			System.out.println("\n");
 		}
