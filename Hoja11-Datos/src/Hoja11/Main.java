@@ -42,7 +42,7 @@ public class Main {
 	public static void printMatrix(int[][] Matrix) {
 		System.out.print("\n\t");
 		for (int j = 0; j < N; j++) {
-			System.out.print(j + "\t");
+			System.out.print("Ciudad: " + j + "\t");
 		}
 		System.out.println();
 		for (int j = 0; j < 35; j++) {
@@ -50,7 +50,7 @@ public class Main {
 		}
 		System.out.println();
 		for (int i = 0; i < N; i++) {
-			System.out.print(i + " |\t");
+			System.out.print("Ciudad: " + i + " |\t");
 			for (int j = 0; j < N; j++) {
 				System.out.print(Matrix[i][j]);
 				System.out.print("\t");
