@@ -23,11 +23,11 @@ public class Main {
 		System.out.println("Matrix to find the shortest path of.");
 		printMatrix(M);
 		System.out.println("Shortest Path Matrix.");
-		printMatrix(FloydAlgo(M));
+		printMatrix(Floyd(M));
 		
 	}
 
-	public static int[][] FloydAlgo(int[][] M) {
+	public static int[][] Floyd(int[][] M) {
 		for (int k = 0; k < N; k++) {
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < N; j++) {
